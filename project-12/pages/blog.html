@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - SiteScaffold</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind.config.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="font-body text-slate-600 bg-slate-50 dark:bg-darkbg dark:text-slate-300 transition-colors duration-300"
+    x-data="{ mobileMenuOpen: false, loginModalOpen: false }">
+
+    <!-- Header Reuse -->
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="home-1.html" class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl shadow-lg shadow-primary-500/30">
+                    <i class="ph ph-hexagon text-2xl"></i>
+                </div>
+                <span class="font-heading font-bold text-2xl text-slate-900 dark:text-white tracking-tight">Site<span
+                        class="text-primary-600">Scaffold</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="home-1.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+                <a href="home-2.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">SaaS</a>
+
+                <a href="about.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                <a href="services.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Services</a>
+                <a href="blog.html"
+                    class="font-medium text-primary-600 dark:text-primary-400 transition-colors">Blog</a>
+                <a href="contact.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden lg:flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button x-data @click="$store.theme.toggle()"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400">
+                    <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
+                    <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
+                </button>
+
+                <!-- RTL Toggle -->
+                <button x-data @click="$store.theme.toggleRTL()"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400 font-bold text-xs"
+                    :title="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">
+                    <span x-show="$store.theme.dir === 'ltr'">RTL</span>
+                    <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
+                </button>
+
+                <!-- CTA Button -->
+                <button @click="loginModalOpen = true"
+                    class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-2.5 rounded-full font-semibold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                    Login <i class="ph ph-user font-bold"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-2xl text-slate-800 dark:text-white">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div x-show="mobileMenuOpen" x-transition class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm lg:hidden"
+            @click="mobileMenuOpen = false"></div>
+
+        <!-- Mobile Sidebar -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="translate-x-full"
+            class="fixed right-0 top-0 h-full w-80 bg-white dark:bg-darkcard shadow-2xl z-50 p-6 flex flex-col lg:hidden">
+
+            <div class="flex items-center justify-between mb-8">
+                <span class="font-heading font-bold text-xl text-slate-900 dark:text-white">Menu</span>
+                <button @click="mobileMenuOpen = false" class="text-2xl text-slate-500 hover:text-red-500">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <nav class="flex flex-col gap-4">
+                <a href="home-1.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Home</a>
+                <a href="home-2.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">SaaS Home</a>
+                <a href="about.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">About Us</a>
+                <a href="services.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Services</a>
+                <a href="blog.html" class="text-lg font-medium text-primary-600 dark:text-primary-400">Blog</a>
+                <a href="contact.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Contact</a>
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <button @click="loginModalOpen = true; mobileMenuOpen = false"
+                        class="w-full flex items-center justify-center gap-2 bg-primary-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-primary-500/30">
+                        <i class="ph ph-user"></i> Login
+                    </button>
+                </div>
+            </nav>
+
+            <div class="mt-auto">
+                <button x-data @click="$store.theme.toggle()"
+                    class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl mb-3 text-slate-700 dark:text-slate-300 font-medium">
+                    <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
+                    <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
+                    <span>Toggle Theme</span>
+                </button>
+                <button x-data @click="$store.theme.toggleRTL()"
+                    class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl mb-4 text-slate-700 dark:text-slate-300 font-medium">
+                    <i class="ph ph-arrows-left-right text-xl"></i>
+                    <span x-text="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">Switch to RTL</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header Removed -->
+
+    <!-- Blog Grid -->
+    <section class="pt-24 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Posts -->
+                <div class="lg:col-span-2 h-fit" x-data="{
+                    currentPage: 1,
+                    itemsPerPage: 4,
+                    posts: [
+                        {
+                            id: 1,
+                            title: 'How to Scale Your Service Business Efficiently',
+                            category: 'Business',
+                            categoryColor: 'primary',
+                            date: 'Oct 24, 2024',
+                            image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            excerpt: 'Scaling a service-based business requires a strategic approach to maintain quality while increasing capacity. In this guide, we explore key strategies...'
+                        },
+                        {
+                            id: 2,
+                            title: 'The Future of AI in Consulting',
+                            category: 'Technology',
+                            categoryColor: 'blue',
+                            date: 'Oct 18, 2024',
+                            image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            excerpt: 'Artificial Intelligence is transforming the consulting landscape. Learn how to leverage these tools to deliver better results for your clients...'
+                        },
+                        {
+                            id: 3,
+                            title: 'Building a Strong Brand Identity',
+                            category: 'Design',
+                            categoryColor: 'purple',
+                            date: 'Oct 12, 2024',
+                            image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            excerpt: 'Your brand is more than just a logo. Discover the essential elements of building a memorable and impactful brand identity this year...'
+                        },
+                        {
+                            id: 4,
+                            title: 'Maximizing ROI with Digital Marketing',
+                            category: 'Marketing',
+                            categoryColor: 'green',
+                            date: 'Oct 05, 2024',
+                            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            excerpt: 'Are you getting the most out of your marketing budget? We break down the most effective channels and strategies for high returns...'
+                        },
+                        {
+                            id: 5,
+                            title: 'Remote Work Culture: A Guide',
+                            category: 'Management',
+                            categoryColor: 'orange',
+                            date: 'Sep 28, 2024',
+                            image: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            excerpt: 'Building a cohesive team culture remotely has its challenges. Here are practical tips to keep your team connected and motivated from anywhere...'
+                        },
+                        {
+                            id: 6,
+                            title: 'Cybersecurity Best Practices for SMEs',
+                            category: 'Security',
+                            categoryColor: 'red',
+                            date: 'Sep 22, 2024',
+                            image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            excerpt: 'Protecting your business data is crucial. We verify the essential cybersecurity protocols every small and medium business should implement...'
+                        }
+                    ],
+                    get totalPages() {
+                        return Math.ceil(this.posts.length / this.itemsPerPage);
+                    },
+                    get paginatedPosts() {
+                        const start = (this.currentPage - 1) * this.itemsPerPage;
+                        return this.posts.slice(start, start + this.itemsPerPage);
+                    },
+                    prevPage() {
+                        if (this.currentPage > 1) this.currentPage--;
+                    },
+                    nextPage() {
+                        if (this.currentPage < this.totalPages) this.currentPage++;
+                    },
+                    goToPage(page) {
+                        this.currentPage = page;
+                    }
+                }">
+
+                    <!-- Posts Grid -->
+                    <div class="grid md:grid-cols-2 gap-8 content-start">
+                        <template x-for="post in paginatedPosts" :key="post.id">
+                            <article
+                                class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-lg transition-shadow">
+                                <a :href="'blog-details.html?id=' + post.id" class="block aspect-video overflow-hidden">
+                                    <img :src="post.image" :alt="post.title"
+                                        class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+                                </a>
+                                <div class="p-6">
+                                    <div class="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                                        <span class="px-3 py-1 rounded-full font-semibold" :class="{
+                                                'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400': post.categoryColor === 'primary',
+                                                'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400': post.categoryColor === 'blue',
+                                                'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400': post.categoryColor === 'purple',
+                                                'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400': post.categoryColor === 'green',
+                                                'bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400': post.categoryColor === 'orange',
+                                                'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400': post.categoryColor === 'red'
+                                            }" x-text="post.category"></span>
+                                        <span><i class="ph ph-calendar"></i> <span x-text="post.date"></span></span>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                        <a :href="'blog-details.html?id=' + post.id"
+                                            class="hover:text-primary-600 transition-colors" x-text="post.title"></a>
+                                    </h2>
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed"
+                                        x-text="post.excerpt"></p>
+                                    <a :href="'blog-details.html?id=' + post.id"
+                                        class="inline-flex items-center gap-2 text-primary-600 font-bold hover:gap-3 transition-all">
+                                        Read More <i class="ph ph-chevron-right text-lg"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        </template>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-center gap-2 mt-8">
+                        <button @click="prevPage()" :disabled="currentPage === 1"
+                            class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                            <i class="ph ph-chevron-left"></i>
+                        </button>
+
+                        <template x-for="page in totalPages">
+                            <button @click="goToPage(page)"
+                                class="w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors"
+                                :class="currentPage === page ? 
+                                    'bg-primary-600 text-white shadow-lg shadow-primary-500/30' : 
+                                    'border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400'"
+                                x-text="page">
+                            </button>
+                        </template>
+
+                        <button @click="nextPage()" :disabled="currentPage === totalPages"
+                            class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                            <i class="ph ph-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="space-y-8">
+                    <!-- Search -->
+                    <div
+                        class="bg-white dark:bg-darkcard p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-4">Search</h3>
+                        <div class="relative">
+                            <input type="text" placeholder="Search..."
+                                class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary-500 text-sm">
+                            <i class="ph ph-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div
+                        class="bg-white dark:bg-darkcard p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-4">Categories</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#"
+                                    class="flex items-center justify-between text-slate-600 dark:text-slate-400 hover:text-primary-600 transition-colors text-sm group">
+                                    <span class="font-medium">Business Strategy</span>
+                                    <span
+                                        class="bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-xs font-bold group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 group-hover:text-primary-600 transition-colors">12</span></a>
+                            </li>
+                            <li><a href="#"
+                                    class="flex items-center justify-between text-slate-600 dark:text-slate-400 hover:text-primary-600 transition-colors text-sm group">
+                                    <span class="font-medium">Marketing</span>
+                                    <span
+                                        class="bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-xs font-bold group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 group-hover:text-primary-600 transition-colors">8</span></a>
+                            </li>
+                            <li><a href="#"
+                                    class="flex items-center justify-between text-slate-600 dark:text-slate-400 hover:text-primary-600 transition-colors text-sm group">
+                                    <span class="font-medium">Technology</span>
+                                    <span
+                                        class="bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-xs font-bold group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 group-hover:text-primary-600 transition-colors">5</span></a>
+                            </li>
+                            <li><a href="#"
+                                    class="flex items-center justify-between text-slate-600 dark:text-slate-400 hover:text-primary-600 transition-colors text-sm group">
+                                    <span class="font-medium">Design</span>
+                                    <span
+                                        class="bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-xs font-bold group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 group-hover:text-primary-600 transition-colors">3</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tags -->
+                    <div
+                        class="bg-white dark:bg-darkcard p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-4">Popular Tags</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="#"
+                                class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 transition-colors">#Startup</a>
+                            <a href="#"
+                                class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 transition-colors">#Growth</a>
+                            <a href="#"
+                                class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 transition-colors">#Innovation</a>
+                            <a href="#"
+                                class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 transition-colors">#Tips</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Reuse -->
+    <footer class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div>
+                    <a href="home-1.html" class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl">
+                            <i class="ph ph-hexagon text-2xl"></i>
+                        </div>
+                        <span class="font-heading font-bold text-2xl tracking-tight">Site<span
+                                class="text-primary-500">Scaffold</span></span>
+                    </a>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        A premium template structure designed for service-based businesses, agencies, and consulting
+                        firms.
+                    </p>
+                    <!-- Socials -->
+                    <div class="flex gap-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-facebook-logo text-xl"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-twitter-logo text-xl"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html" class="text-slate-400 hover:text-white transition-colors">About Us</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-slate-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="coming-soon.html"
+                                class="text-slate-400 hover:text-white transition-colors">Events</a></li>
+                        <li><a href="404.html" class="text-slate-400 hover:text-white transition-colors">Careers</a>
+                        </li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6">Services</h4>
+                    <ul class="space-y-4">
+                        <li><a href="service-details.html?id=consulting"
+                                class="text-slate-400 hover:text-white transition-colors">Strategy Consulting</a></li>
+                        <li><a href="service-details.html?id=software"
+                                class="text-slate-400 hover:text-white transition-colors">Software Development</a></li>
+                        <li><a href="service-details.html?id=marketing"
+                                class="text-slate-400 hover:text-white transition-colors">Digital Marketing</a></li>
+                        <li><a href="service-details.html?id=design"
+                                class="text-slate-400 hover:text-white transition-colors">UI/UX Design</a></li>
+                        <li><a href="service-details.html?id=security"
+                                class="text-slate-400 hover:text-white transition-colors">Cybersecurity</a></li>
+                        <li><a href="service-details.html?id=cloud"
+                                class="text-slate-400 hover:text-white transition-colors">Cloud Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6">Newsletter</h4>
+                    <p class="text-slate-400 mb-4">Subscribe to our newsletter for the latest updates.</p>
+                    <form class="flex flex-col gap-4">
+                        <input type="email" placeholder="Your email address"
+                            class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 transition-colors">
+                        <button type="submit"
+                            class="bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-semibold transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between text-slate-500 text-sm">
+                <p>&copy; 2024 SiteScaffold. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    Powered by <a href="https://abhivorn.com" target="_blank"
+                        class="hover:text-white transition-colors">Abhivorn Technologies Pvt Ltd</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- Login Modal -->
+    <!-- ============================================ -->
+    <div x-show="loginModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 py-10" x-cloak>
+        <!-- Overlay -->
+        <div x-show="loginModalOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" @click="loginModalOpen = false"
+            class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+
+        <!-- Modal Content -->
+        <div x-show="loginModalOpen" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="opacity-0 scale-95 translate-y-4"
+            class="relative w-full max-w-md bg-white dark:bg-darkcard rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden max-h-[90vh] overflow-y-auto no-scrollbar">
+
+            <!-- Close Button -->
+            <button @click="loginModalOpen = false"
+                class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-red-50 hover:text-red-500 transition-colors z-10">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+
+            <div class="p-8 lg:p-10">
+                <div class="text-center mb-8">
+                    <div
+                        class="w-16 h-16 bg-primary-600/10 text-primary-600 flex items-center justify-center rounded-2xl mx-auto mb-4">
+                        <i class="ph ph-lock-key text-3xl font-bold"></i>
+                    </div>
+                    <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-2">Welcome Back</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Please enter your details to sign in</p>
+                </div>
+
+                <form action="#" class="space-y-5">
+                    <!-- Email -->
+                    <div class="space-y-1.5">
+                        <label for="modal-email"
+                            class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Email
+                            Address</label>
+                        <div class="relative group">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-600 transition-colors">
+                                <i class="ph ph-envelope-simple text-xl"></i>
+                            </div>
+                            <input type="email" id="modal-email"
+                                class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-slate-900 dark:text-white text-sm"
+                                placeholder="name@example.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between">
+                            <label for="modal-password"
+                                class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Password</label>
+                            <a href="#"
+                                class="text-[10px] font-bold text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-widest">Forgot?</a>
+                        </div>
+                        <div class="relative group" x-data="{ show: false }">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-600 transition-colors">
+                                <i class="ph ph-lock-simple text-xl"></i>
+                            </div>
+                            <input :type="show ? 'text' : 'password'" id="modal-password"
+                                class="w-full pl-11 pr-12 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-slate-900 dark:text-white text-sm"
+                                placeholder="••••••••" required>
+                            <button type="button" @click="show = !show"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                                <i class="ph" :class="show ? 'ph-eye-slash' : 'ph-eye'"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="modal-remember"
+                            class="w-4 h-4 text-primary-600 bg-slate-50 dark:bg-slate-900 border-slate-300 dark:border-slate-700 rounded focus:ring-primary-500">
+                        <label for="modal-remember" class="ml-2 text-xs text-slate-600 dark:text-slate-400">Remember me
+                            for 30 days</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-bold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5 active:scale-95 text-sm uppercase tracking-widest">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative my-8">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-100 dark:border-slate-800"></div>
+                    </div>
+                    <div class="relative flex justify-center text-[10px] uppercase tracking-widest">
+                        <span class="bg-white dark:bg-darkcard px-4 text-slate-400 font-bold">Or continue with</span>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button
+                        class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold text-slate-700 dark:text-slate-300">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                        Google
+                    </button>
+                    <button
+                        class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold text-slate-700 dark:text-slate-300">
+                        <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="w-4 h-4"
+                            alt="Facebook">
+                        Facebook
+                    </button>
+                </div>
+            </div>
+
+            <!-- Portal Shortcuts -->
+            <div
+                class="bg-slate-50/50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800 p-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../dashboard/admin/index.html"
+                    class="flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-primary-600 transition-colors uppercase tracking-widest">
+                    <i class="ph ph-shield-check text-base"></i> ADMIN PORTAL
+                </a>
+                <div class="hidden sm:block w-px h-4 bg-slate-200 dark:bg-slate-800"></div>
+                <a href="../dashboard/client/index.html"
+                    class="flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-primary-600 transition-colors uppercase tracking-widest">
+                    <i class="ph ph-user-circle text-base"></i> CLIENT PORTAL
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Script -->
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
+```

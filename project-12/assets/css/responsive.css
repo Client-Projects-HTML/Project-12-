@@ -1,0 +1,461 @@
+/* ===================================
+   RESPONSIVE ENHANCEMENTS
+   Mobile-First Design System
+   =================================== */
+
+/* Base Mobile Styles (320px - 639px) */
+@media (max-width: 639px) {
+
+    /* Typography Scaling */
+    .responsive-heading-xl {
+        font-size: 1.875rem;
+        /* 30px */
+        line-height: 2.25rem;
+    }
+
+    .responsive-heading-lg {
+        font-size: 1.5rem;
+        /* 24px */
+        line-height: 2rem;
+    }
+
+    .responsive-heading-md {
+        font-size: 1.25rem;
+        /* 20px */
+        line-height: 1.75rem;
+    }
+
+    /* Touch Targets - Minimum 44x44px */
+    .touch-target {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav-item {
+        padding: 0.875rem 1rem;
+        font-size: 0.9375rem;
+    }
+
+    /* Card Spacing */
+    .mobile-card {
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Grid Adjustments */
+    .mobile-grid-1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    /* Form Elements */
+    .mobile-input {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        padding: 0.75rem 1rem;
+    }
+
+    /* Modal Adjustments */
+    .mobile-modal {
+        width: calc(100% - 2rem);
+        max-height: calc(100vh - 4rem);
+        margin: 1rem;
+    }
+
+    /* Table Responsive */
+    .mobile-table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Sidebar Full Width on Mobile */
+    .mobile-sidebar {
+        width: 85vw;
+        max-width: 320px;
+    }
+
+    /* Button Stacking */
+    .mobile-button-stack {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mobile-button-stack>* {
+        width: 100%;
+    }
+
+    /* Image Optimization */
+    .mobile-img-contain {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Spacing Adjustments */
+    .mobile-spacing-sm {
+        padding: 1rem;
+    }
+
+    .mobile-spacing-md {
+        padding: 1.5rem;
+    }
+
+    /* Hide on Mobile */
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+/* Tablet Styles (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+
+    /* Typography */
+    .tablet-heading-xl {
+        font-size: 2.25rem;
+        /* 36px */
+        line-height: 2.5rem;
+    }
+
+    .tablet-heading-lg {
+        font-size: 1.875rem;
+        /* 30px */
+        line-height: 2.25rem;
+    }
+
+    /* Grid Layouts */
+    .tablet-grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tablet-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* Card Layouts */
+    .tablet-card {
+        padding: 1.5rem;
+    }
+
+    /* Navigation */
+    .tablet-nav-horizontal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    /* Modal Sizing */
+    .tablet-modal {
+        max-width: 600px;
+        width: 90%;
+    }
+
+    /* Spacing */
+    .tablet-spacing-md {
+        padding: 2rem;
+    }
+
+    .tablet-spacing-lg {
+        padding: 3rem;
+    }
+
+    /* Hide on Tablet */
+    .hide-tablet {
+        display: none !important;
+    }
+}
+
+/* Desktop Styles (1024px+) */
+@media (min-width: 1024px) {
+
+    /* Typography */
+    .desktop-heading-xl {
+        font-size: 3rem;
+        /* 48px */
+        line-height: 1.2;
+    }
+
+    .desktop-heading-lg {
+        font-size: 2.25rem;
+        /* 36px */
+        line-height: 2.5rem;
+    }
+
+    /* Grid Layouts */
+    .desktop-grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .desktop-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* Container Max Width */
+    .desktop-container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Sidebar */
+    .desktop-sidebar {
+        position: sticky;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+    }
+
+    /* Modal Sizing */
+    .desktop-modal-sm {
+        max-width: 500px;
+    }
+
+    .desktop-modal-md {
+        max-width: 700px;
+    }
+
+    .desktop-modal-lg {
+        max-width: 900px;
+    }
+
+    /* Spacing */
+    .desktop-spacing-lg {
+        padding: 4rem;
+    }
+
+    .desktop-spacing-xl {
+        padding: 6rem;
+    }
+
+    /* Hide on Desktop */
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* Large Desktop (1280px+) */
+@media (min-width: 1280px) {
+    .xl-container {
+        max-width: 1536px;
+    }
+
+    .xl-grid-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .xl-spacing-xl {
+        padding: 8rem;
+    }
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+
+/* Responsive Text Sizes */
+.text-responsive-xs {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.text-responsive-sm {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+.text-responsive-base {
+    font-size: clamp(1rem, 3vw, 1.125rem);
+}
+
+.text-responsive-lg {
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
+}
+
+.text-responsive-xl {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+}
+
+.text-responsive-2xl {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+.text-responsive-3xl {
+    font-size: clamp(1.875rem, 6vw, 3rem);
+}
+
+/* Responsive Spacing */
+.spacing-responsive-sm {
+    padding: clamp(0.5rem, 2vw, 1rem);
+}
+
+.spacing-responsive-md {
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.spacing-responsive-lg {
+    padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.spacing-responsive-xl {
+    padding: clamp(2rem, 5vw, 4rem);
+}
+
+/* Gap Utilities */
+.gap-responsive-sm {
+    gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+.gap-responsive-md {
+    gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+.gap-responsive-lg {
+    gap: clamp(1.5rem, 4vw, 2rem);
+}
+
+/* ===================================
+   COMPONENT-SPECIFIC RESPONSIVE
+   =================================== */
+
+/* Dashboard Cards */
+.dashboard-stat-card {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-radius: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Data Tables */
+.responsive-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 1rem;
+}
+
+.responsive-table {
+    min-width: 600px;
+}
+
+@media (max-width: 768px) {
+    .responsive-table {
+        font-size: 0.875rem;
+    }
+
+    .responsive-table th,
+    .responsive-table td {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Navigation Responsive */
+.nav-item-responsive {
+    padding: clamp(0.625rem, 2vw, 0.875rem) clamp(0.75rem, 2.5vw, 1rem);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* Modal Responsive */
+.modal-responsive {
+    width: clamp(300px, 90vw, 600px);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Form Inputs */
+.input-responsive {
+    padding: clamp(0.625rem, 2vw, 0.875rem) clamp(0.875rem, 2.5vw, 1rem);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* Buttons */
+.btn-responsive {
+    padding: clamp(0.625rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.btn-responsive-lg {
+    padding: clamp(0.75rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
+
+/* ===================================
+   ACCESSIBILITY ENHANCEMENTS
+   =================================== */
+
+/* Focus Visible */
+.focus-visible-enhanced:focus-visible {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+}
+
+/* Skip to Content */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: #1e293b;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    z-index: 100;
+    border-radius: 0 0 0.5rem 0;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================== */
+
+/* Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .print-break-before {
+        page-break-before: always;
+    }
+
+    .print-break-after {
+        page-break-after: always;
+    }
+}
+
+/* ===================================
+   LANDSCAPE ORIENTATION
+   =================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .landscape-compact {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .landscape-hide {
+        display: none;
+    }
+}
+
+/* ===================================
+   HIGH DPI DISPLAYS
+   =================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .retina-border {
+        border-width: 0.5px;
+    }
+}

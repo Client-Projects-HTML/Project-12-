@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - SiteScaffold Service Template</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config & CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind.config.js"></script> <!-- Custom Config -->
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="font-body text-slate-600 bg-slate-50 dark:bg-darkbg dark:text-slate-300 transition-colors duration-300"
+    x-data="{ mobileMenuOpen: false, loginModalOpen: false, videoModalOpen: false }">
+
+    <!-- ============================================ -->
+    <!-- Navbar -->
+    <!-- ============================================ -->
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="home-1.html" class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl shadow-lg shadow-primary-500/30">
+                    <i class="ph ph-hexagon text-2xl"></i>
+                </div>
+                <span class="font-heading font-bold text-2xl text-slate-900 dark:text-white tracking-tight">Site<span
+                        class="text-primary-600">Scaffold</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="home-1.html"
+                    class="font-medium text-primary-600 dark:text-primary-400 transition-colors">Home</a>
+                <a href="home-2.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">SaaS</a>
+
+                <a href="about.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                <a href="services.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Services</a>
+                <a href="blog.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
+                <a href="contact.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden lg:flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button x-data @click="$store.theme.toggle()"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400">
+                    <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
+                    <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
+                </button>
+
+                <!-- RTL Toggle -->
+                <button x-data @click="$store.theme.toggleRTL()"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400 font-bold text-xs"
+                    :title="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">
+                    <span x-show="$store.theme.dir === 'ltr'">RTL</span>
+                    <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
+                </button>
+
+                <!-- CTA Button -->
+                <button @click="loginModalOpen = true"
+                    class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-2.5 rounded-full font-semibold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                    Login <i class="ph ph-user font-bold"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-2xl text-slate-800 dark:text-white">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div x-show="mobileMenuOpen" x-transition class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm lg:hidden"
+            @click="mobileMenuOpen = false"></div>
+
+        <!-- Mobile Sidebar -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="translate-x-full"
+            class="fixed right-0 top-0 h-full w-80 bg-white dark:bg-darkcard shadow-2xl z-50 p-6 flex flex-col lg:hidden">
+
+            <div class="flex items-center justify-between mb-8">
+                <span class="font-heading font-bold text-xl text-slate-900 dark:text-white">Menu</span>
+                <button @click="mobileMenuOpen = false" class="text-2xl text-slate-500 hover:text-red-500">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <nav class="flex flex-col gap-4">
+                <a href="home-1.html" class="text-lg font-medium text-primary-600 dark:text-primary-400">Home</a>
+                <a href="home-2.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">SaaS Home</a>
+                <a href="about.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">About Us</a>
+                <a href="services.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Services</a>
+                <a href="contact.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Contact</a>
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <button @click="loginModalOpen = true; mobileMenuOpen = false"
+                        class="w-full flex items-center justify-center gap-2 bg-primary-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-primary-500/30">
+                        <i class="ph ph-user"></i> Login
+                    </button>
+                </div>
+            </nav>
+
+            <div class="mt-auto">
+                <button x-data @click="$store.theme.toggle()"
+                    class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl mb-3 text-slate-700 dark:text-slate-300 font-medium">
+                    <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
+                    <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
+                    <span>Toggle Theme</span>
+                </button>
+                <button x-data @click="$store.theme.toggleRTL()"
+                    class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl mb-4 text-slate-700 dark:text-slate-300 font-medium">
+                    <i class="ph ph-arrows-left-right text-xl"></i>
+                    <span x-text="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">Switch to RTL</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- Hero Section -->
+    <!-- ============================================ -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+            <div
+                class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary-50 to-transparent dark:from-primary-900/20">
+            </div>
+            <div
+                class="absolute -top-40 -right-40 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-50 animate-pulse">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <span
+                        class="inline-block px-4 py-1.5 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-6">
+                        🚀 Premier Service Solutions
+                    </span>
+                    <h1
+                        class="text-4xl lg:text-6xl font-heading font-bold text-slate-900 dark:text-white leading-tight mb-6">
+                        Grow Your Business with <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent">Next-Gen</span>
+                        Solutions
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        We provide top-tier consulting and digital services to help your business scale efficiently.
+                        Experience the difference of professional quality.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                        <a href="services.html"
+                            class="w-full sm:w-auto px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-1 text-center">
+                            Explore Services
+                        </a>
+                        <button @click="videoModalOpen = true"
+                            class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-xl font-semibold transition-all flex items-center justify-center gap-2">
+                            <i class="ph ph-play-circle text-xl text-primary-600"></i> Watch Demo
+                        </button>
+                    </div>
+
+                    <div
+                        class="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-8 text-slate-500 dark:text-slate-400">
+                        <!-- Logos -->
+                        <div
+                            class="flex items-center gap-2 font-heading font-bold text-lg opacity-80 hover:opacity-100 transition-opacity">
+                            <i class="ph ph-google-logo text-2xl"></i> ACME Corp
+                        </div>
+                        <div
+                            class="flex items-center gap-2 font-heading font-bold text-lg opacity-80 hover:opacity-100 transition-opacity">
+                            <i class="ph ph-amazon-logo text-2xl"></i> GlobalSys
+                        </div>
+                        <div
+                            class="flex items-center gap-2 font-heading font-bold text-lg opacity-80 hover:opacity-100 transition-opacity">
+                            <i class="ph ph-microsoft-logo text-2xl"></i> FutureTech
+                        </div>
+                        <div
+                            class="flex items-center gap-2 font-heading font-bold text-lg opacity-80 hover:opacity-100 transition-opacity">
+                            <i class="ph ph-spotify-logo text-2xl"></i> Innovate
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 relative">
+                    <!-- Hero Image Placeholder -->
+                    <div
+                        class="relative z-10 rounded-2xl overflow-hidden glass shadow-2xl transition-transform hover:scale-[1.02]">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Team Meeting" class="w-full h-auto object-cover">
+
+                        <!-- Floating Card -->
+                        <div class="absolute bottom-6 left-6 right-6 bg-white dark:bg-darkcard p-4 rounded-xl shadow-lg flex items-center gap-4 animate-bounce"
+                            style="animation-duration: 3s">
+                            <div
+                                class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-2xl">
+                                <i class="ph ph-trend-up"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Monthly Growth</p>
+                                <p class="text-lg font-bold text-slate-900 dark:text-white">+125% Increase</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decor Blobs -->
+                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl -z-10">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-accent/20 rounded-full blur-3xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Services Section -->
+    <!-- ============================================ -->
+    <section class="py-20 bg-white dark:bg-darkcard">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-primary-600 font-semibold tracking-wider text-sm">WHAT WE DO</span>
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-4">
+                    Professional Services for Every Need</h2>
+                <p class="text-slate-600 dark:text-slate-400">Tailored solutions designed to help your business overcome
+                    challenges and achieve sustainable growth.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="group p-8 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary-200 dark:hover:border-primary-900 hover:shadow-xl hover:shadow-primary-900/5 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-chart-bar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Business Strategy</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Data-driven strategies to optimize your
+                        operations and maximize profitability.</p>
+                    <a href="service-details.html?id=consulting"
+                        class="inline-flex items-center gap-2 text-primary-600 font-semibold group-hover:translate-x-2 transition-transform">
+                        Learn More <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="group p-8 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary-200 dark:hover:border-primary-900 hover:shadow-xl hover:shadow-primary-900/5 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 bg-accent/10 text-accent rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Web Development</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">High-performance websites and applications built
+                        with modern technologies.</p>
+                    <a href="service-details.html?id=software"
+                        class="inline-flex items-center gap-2 text-accent font-semibold group-hover:translate-x-2 transition-transform">
+                        Learn More <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="group p-8 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary-200 dark:hover:border-primary-900 hover:shadow-xl hover:shadow-primary-900/5 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-megaphone"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Digital Marketing</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Reach your target audience with precise ad
+                        campaigns and SEO optimization.</p>
+                    <a href="service-details.html?id=marketing"
+                        class="inline-flex items-center gap-2 text-green-600 font-semibold group-hover:translate-x-2 transition-transform">
+                        Learn More <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- Footer -->
+    <!-- ============================================ -->
+    <footer class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div>
+                    <a href="home-1.html" class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl">
+                            <i class="ph ph-hexagon text-2xl"></i>
+                        </div>
+                        <span class="font-heading font-bold text-2xl tracking-tight">Site<span
+                                class="text-primary-500">Scaffold</span></span>
+                    </a>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        A premium template structure designed for service-based businesses, agencies, and consulting
+                        firms.
+                    </p>
+                    <!-- Socials -->
+                    <div class="flex gap-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-facebook-logo text-xl"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-twitter-logo text-xl"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><i
+                                class="ph ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html" class="text-slate-400 hover:text-white transition-colors">About Us</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-slate-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="coming-soon.html"
+                                class="text-slate-400 hover:text-white transition-colors">Events</a></li>
+                        <li><a href="404.html" class="text-slate-400 hover:text-white transition-colors">Careers</a>
+                        </li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6">Services</h4>
+                    <ul class="space-y-4">
+                        <li><a href="service-details.html?id=consulting"
+                                class="text-slate-400 hover:text-white transition-colors">Strategy Consulting</a></li>
+                        <li><a href="service-details.html?id=software"
+                                class="text-slate-400 hover:text-white transition-colors">Software Development</a></li>
+                        <li><a href="service-details.html?id=marketing"
+                                class="text-slate-400 hover:text-white transition-colors">Digital Marketing</a></li>
+                        <li><a href="service-details.html?id=design"
+                                class="text-slate-400 hover:text-white transition-colors">UI/UX Design</a></li>
+                        <li><a href="service-details.html?id=security"
+                                class="text-slate-400 hover:text-white transition-colors">Cybersecurity</a></li>
+                        <li><a href="service-details.html?id=cloud"
+                                class="text-slate-400 hover:text-white transition-colors">Cloud Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6">Newsletter</h4>
+                    <p class="text-slate-400 mb-4">Subscribe to our newsletter for the latest updates.</p>
+                    <form class="flex flex-col gap-4">
+                        <input type="email" placeholder="Your email address"
+                            class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 transition-colors">
+                        <button type="submit"
+                            class="bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-semibold transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between text-slate-500 text-sm">
+                <p>&copy; 2024 SiteScaffold. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    Powered by <a href="https://abhivorn.com" target="_blank"
+                        class="hover:text-white transition-colors">Abhivorn Technologies Pvt Ltd</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- Login Modal -->
+    <!-- ============================================ -->
+    <div x-show="loginModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 py-10" x-cloak>
+        <!-- Overlay -->
+        <div x-show="loginModalOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" @click="loginModalOpen = false"
+            class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+
+        <!-- Modal Content -->
+        <div x-show="loginModalOpen" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="opacity-0 scale-95 translate-y-4"
+            class="relative w-full max-w-md bg-white dark:bg-darkcard rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden max-h-[90vh] overflow-y-auto no-scrollbar">
+
+            <!-- Close Button -->
+            <button @click="loginModalOpen = false"
+                class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-red-50 hover:text-red-500 transition-colors z-10">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+
+            <div class="p-8 lg:p-10">
+                <div class="text-center mb-8">
+                    <div
+                        class="w-16 h-16 bg-primary-600/10 text-primary-600 flex items-center justify-center rounded-2xl mx-auto mb-4">
+                        <i class="ph ph-lock-key text-3xl font-bold"></i>
+                    </div>
+                    <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-2">Welcome Back</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Please enter your details to sign in</p>
+                </div>
+
+                <form action="#" class="space-y-5">
+                    <!-- Email -->
+                    <div class="space-y-1.5">
+                        <label for="modal-email"
+                            class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Email
+                            Address</label>
+                        <div class="relative group">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-600 transition-colors">
+                                <i class="ph ph-envelope-simple text-xl"></i>
+                            </div>
+                            <input type="email" id="modal-email"
+                                class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-slate-900 dark:text-white text-sm"
+                                placeholder="name@example.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between">
+                            <label for="modal-password"
+                                class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Password</label>
+                            <a href="#"
+                                class="text-[10px] font-bold text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-widest">Forgot?</a>
+                        </div>
+                        <div class="relative group" x-data="{ show: false }">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-600 transition-colors">
+                                <i class="ph ph-lock-simple text-xl"></i>
+                            </div>
+                            <input :type="show ? 'text' : 'password'" id="modal-password"
+                                class="w-full pl-11 pr-12 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-slate-900 dark:text-white text-sm"
+                                placeholder="••••••••" required>
+                            <button type="button" @click="show = !show"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                                <i class="ph" :class="show ? 'ph-eye-slash' : 'ph-eye'"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="modal-remember"
+                            class="w-4 h-4 text-primary-600 bg-slate-50 dark:bg-slate-900 border-slate-300 dark:border-slate-700 rounded focus:ring-primary-500">
+                        <label for="modal-remember" class="ml-2 text-xs text-slate-600 dark:text-slate-400">Remember me
+                            for 30 days</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-bold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5 active:scale-95 text-sm uppercase tracking-widest">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative my-8">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-100 dark:border-slate-800"></div>
+                    </div>
+                    <div class="relative flex justify-center text-[10px] uppercase tracking-widest">
+                        <span class="bg-white dark:bg-darkcard px-4 text-slate-400 font-bold">Or continue with</span>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button
+                        class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold text-slate-700 dark:text-slate-300">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                        Google
+                    </button>
+                    <button
+                        class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold text-slate-700 dark:text-slate-300">
+                        <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="w-4 h-4"
+                            alt="Facebook">
+                        Facebook
+                    </button>
+                </div>
+            </div>
+
+            <!-- Portal Shortcuts -->
+            <div
+                class="bg-slate-50/50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800 p-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../dashboard/admin/index.html"
+                    class="flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-primary-600 transition-colors uppercase tracking-widest">
+                    <i class="ph ph-shield-check text-base"></i> ADMIN PORTAL
+                </a>
+                <div class="hidden sm:block w-px h-4 bg-slate-200 dark:bg-slate-800"></div>
+                <a href="../dashboard/client/index.html"
+                    class="flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-primary-600 transition-colors uppercase tracking-widest">
+                    <i class="ph ph-user-circle text-base"></i> CLIENT PORTAL
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- Video Modal -->
+    <!-- ============================================ -->
+    <div x-show="videoModalOpen"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-md" x-cloak>
+        <!-- Overlay for closing -->
+        <div @click="videoModalOpen = false" class="absolute inset-0"></div>
+
+        <!-- Modal Content -->
+        <div x-show="videoModalOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90 translate-y-4"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="opacity-0 scale-90 translate-y-4"
+            class="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+
+            <button @click="videoModalOpen = false"
+                class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-red-500 hover:text-white transition-all backdrop-blur-sm">
+                <i class="ph ph-x text-xl"></i>
+            </button>
+
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=0" title="Demo Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Main Script -->
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
