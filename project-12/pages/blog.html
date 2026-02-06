@@ -27,14 +27,34 @@
         <div class="container mx-auto px-4 flex items-center justify-between">
 
             <!-- Logo -->
-            <a href="home-1.html" class="flex items-center gap-2">
-                <div
-                    class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl shadow-lg shadow-primary-500/30">
-                    <i class="ph ph-hexagon text-2xl"></i>
+            <div class="flex items-center gap-4">
+                <!-- Logo -->
+                <a href="home-1.html" class="flex items-center gap-2">
+                    <div
+                        class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl shadow-lg shadow-primary-500/30">
+                        <i class="ph ph-hexagon text-2xl"></i>
+                    </div>
+                    <span
+                        class="font-heading font-bold text-2xl text-slate-900 dark:text-white tracking-tight">Site<span
+                            class="text-primary-600">Scaffold</span></span>
+                </a>
+
+                <!-- Mobile Actions -->
+                <div class="flex lg:hidden items-center gap-2">
+                    <button x-data @click="$store.theme.toggle()"
+                        class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400">
+                        <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
+                        <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
+                    </button>
+
+                    <button x-data @click="$store.theme.toggleRTL()"
+                        class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400 font-bold text-xs"
+                        :title="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">
+                        <span x-show="$store.theme.dir === 'ltr'">RTL</span>
+                        <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
+                    </button>
                 </div>
-                <span class="font-heading font-bold text-2xl text-slate-900 dark:text-white tracking-tight">Site<span
-                        class="text-primary-600">Scaffold</span></span>
-            </a>
+            </div>
 
             <!-- Desktop Menu -->
             <nav class="hidden lg:flex items-center gap-8">
@@ -71,10 +91,10 @@
                 </button>
 
                 <!-- CTA Button -->
-                <button @click="loginModalOpen = true"
+                <a href="login.html"
                     class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-2.5 rounded-full font-semibold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
                     Login <i class="ph ph-user font-bold"></i>
-                </button>
+                </a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -83,59 +103,12 @@
             </button>
         </div>
 
-        <!-- Mobile Menu Overlay -->
-        <div x-show="mobileMenuOpen" x-transition class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm lg:hidden"
-            @click="mobileMenuOpen = false"></div>
-
-        <!-- Mobile Sidebar -->
-        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
-            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-            x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0"
-            x-transition:leave-end="translate-x-full"
-            class="fixed right-0 top-0 h-full w-80 bg-white dark:bg-darkcard shadow-2xl z-50 p-6 flex flex-col lg:hidden">
-
-            <div class="flex items-center justify-between mb-8">
-                <span class="font-heading font-bold text-xl text-slate-900 dark:text-white">Menu</span>
-                <button @click="mobileMenuOpen = false" class="text-2xl text-slate-500 hover:text-red-500">
-                    <i class="ph ph-x"></i>
-                </button>
-            </div>
-
-            <nav class="flex flex-col gap-4">
-                <a href="home-1.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Home</a>
-                <a href="home-2.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">SaaS Home</a>
-                <a href="about.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">About Us</a>
-                <a href="services.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Services</a>
-                <a href="blog.html" class="text-lg font-medium text-primary-600 dark:text-primary-400">Blog</a>
-                <a href="contact.html" class="text-lg font-medium text-slate-600 dark:text-slate-300">Contact</a>
-                <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
-                    <button @click="loginModalOpen = true; mobileMenuOpen = false"
-                        class="w-full flex items-center justify-center gap-2 bg-primary-600 text-white py-3 rounded-xl font-semibold shadow-lg shadow-primary-500/30">
-                        <i class="ph ph-user"></i> Login
-                    </button>
-                </div>
-            </nav>
-
-            <div class="mt-auto">
-                <button x-data @click="$store.theme.toggle()"
-                    class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl mb-3 text-slate-700 dark:text-slate-300 font-medium">
-                    <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
-                    <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
-                    <span>Toggle Theme</span>
-                </button>
-                <button x-data @click="$store.theme.toggleRTL()"
-                    class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl mb-4 text-slate-700 dark:text-slate-300 font-medium">
-                    <i class="ph ph-arrows-left-right text-xl"></i>
-                    <span x-text="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">Switch to RTL</span>
-                </button>
-            </div>
-        </div>
     </header>
 
     <!-- Page Header Removed -->
 
     <!-- Blog Grid -->
-    <section class="pt-24 pb-20">
+    <section id="blog-start" class="pt-24 pb-20">
         <div class="container mx-auto px-4">
             <div class="grid lg:grid-cols-3 gap-12">
                 <!-- Posts -->
@@ -206,13 +179,20 @@
                         return this.posts.slice(start, start + this.itemsPerPage);
                     },
                     prevPage() {
-                        if (this.currentPage > 1) this.currentPage--;
+                        if (this.currentPage > 1) {
+                            this.currentPage--;
+                            document.getElementById('blog-start').scrollIntoView({ behavior: 'smooth' });
+                        }
                     },
                     nextPage() {
-                        if (this.currentPage < this.totalPages) this.currentPage++;
+                        if (this.currentPage < this.totalPages) {
+                            this.currentPage++;
+                            document.getElementById('blog-start').scrollIntoView({ behavior: 'smooth' });
+                        }
                     },
                     goToPage(page) {
                         this.currentPage = page;
+                        document.getElementById('blog-start').scrollIntoView({ behavior: 'smooth' });
                     }
                 }">
 
@@ -254,13 +234,13 @@
 
                     <!-- Pagination -->
                     <div class="flex items-center justify-center gap-2 mt-8">
-                        <button @click="prevPage()" :disabled="currentPage === 1"
+                        <button type="button" @click.prevent="prevPage()" :disabled="currentPage === 1"
                             class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-                            <i class="ph ph-chevron-left"></i>
+                            <i class="ph ph-caret-left text-xl"></i>
                         </button>
 
                         <template x-for="page in totalPages">
-                            <button @click="goToPage(page)"
+                            <button type="button" @click.prevent="goToPage(page)"
                                 class="w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors"
                                 :class="currentPage === page ? 
                                     'bg-primary-600 text-white shadow-lg shadow-primary-500/30' : 
@@ -269,9 +249,9 @@
                             </button>
                         </template>
 
-                        <button @click="nextPage()" :disabled="currentPage === totalPages"
+                        <button type="button" @click.prevent="nextPage()" :disabled="currentPage === totalPages"
                             class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-                            <i class="ph ph-chevron-right"></i>
+                            <i class="ph ph-caret-right text-xl"></i>
                         </button>
                     </div>
                 </div>
@@ -568,6 +548,41 @@
         </div>
     </div>
 
+    <!-- Mobile Menu Overlay -->
+    <div x-show="mobileMenuOpen" x-transition class="fixed inset-0 z-[55] bg-black/60 backdrop-blur-sm lg:hidden"
+        @click="mobileMenuOpen = false"></div>
+
+    <!-- Mobile Sidebar -->
+    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
+        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="translate-x-full"
+        class="fixed right-0 top-0 h-full w-80 bg-white dark:bg-darkcard shadow-2xl z-[60] p-5 pb-32 flex flex-col lg:hidden overflow-y-auto">
+
+        <div class="flex items-center justify-between mb-4">
+            <span class="font-heading font-bold text-xl text-slate-900 dark:text-white">Menu</span>
+            <button @click="mobileMenuOpen = false" class="text-2xl text-slate-500 hover:text-red-500">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+
+        <nav class="flex flex-col gap-1">
+            <a href="home-1.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Home</a>
+            <a href="home-2.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">SaaS Home</a>
+            <a href="about.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">About Us</a>
+            <a href="services.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Services</a>
+            <a href="blog.html" class="text-base font-medium text-primary-600 dark:text-primary-400 py-1">Blog</a>
+            <a href="contact.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Contact</a>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2">
+                <a href="login.html"
+                    class="w-full flex items-center justify-center gap-2 bg-primary-600 text-white py-2.5 rounded-xl font-semibold shadow-lg shadow-primary-500/30 text-sm">
+                    <i class="ph ph-user"></i> Login
+                </a>
+            </div>
+        </nav>
+
+
+    </div>
     <!-- Main Script -->
     <script src="../assets/js/main.js"></script>
 </body>

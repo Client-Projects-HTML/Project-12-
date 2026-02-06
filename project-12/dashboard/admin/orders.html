@@ -67,12 +67,15 @@
     }">
 
     <!-- Mobile Overlay -->
-    <div x-show="sidebarOpen" x-transition class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm lg:hidden"
+    <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-out duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-in duration-200" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0" class="fixed inset-0 z-[55] bg-black/60 backdrop-blur-sm lg:hidden"
         @click="sidebarOpen = false"></div>
 
     <!-- Sidebar -->
     <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
-        class="fixed top-0 left-0 z-50 h-screen w-64 bg-white dark:bg-darkcard border-r border-slate-200 dark:border-slate-800 transition-transform duration-300 ease-in-out">
+        class="fixed top-0 left-0 z-[60] h-screen w-64 bg-white dark:bg-darkcard border-r border-slate-200 dark:border-slate-800 transition-transform duration-300 ease-in-out overflow-y-auto">
         <!-- Logo -->
         <div class="h-16 flex items-center px-6 border-b border-slate-100 dark:border-slate-800">
             <a href="../../pages/home-1.html" class="flex items-center gap-2">
@@ -273,7 +276,7 @@
                                 :class="open ? 'rotate-180' : ''"></i>
                         </button>
                         <div x-show="open" x-transition x-cloak
-                            class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-700 rounded-xl shadow-xl py-1 z-20">
+                            class="absolute left-0 top-full mt-2 w-48 bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-700 rounded-xl shadow-xl py-1 z-20">
                             <template x-for="option in ['All Statuses', 'Completed', 'Pending', 'Cancelled']">
                                 <button @click="filterStatus = option; open = false"
                                     class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all font-medium"
@@ -406,16 +409,16 @@
         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" x-cloak>
+        class="fixed inset-0 z-[60] flex items-center justify-center p-5 bg-slate-900/60 backdrop-blur-sm" x-cloak>
 
         <div @click.outside="viewOrderModal = false"
-            class="bg-white dark:bg-darkcard w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden transform transition-all"
+            class="bg-white dark:bg-darkcard w-full max-w-md rounded-2xl shadow-2xl overflow-hidden transform transition-all"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 scale-95 translate-y-4"
             x-transition:enter-end="opacity-100 scale-100 translate-y-0">
 
             <div
-                class="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
+                class="px-4 py-2 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
                 <div class="flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 text-primary-600 rounded-xl flex items-center justify-center">
@@ -434,14 +437,13 @@
                 </button>
             </div>
 
-            <div class="p-8 space-y-6">
+            <div class="p-4 space-y-3">
                 <!-- Simple Order Items Mock -->
-                <div
-                    class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 border border-slate-100 dark:border-slate-800">
-                    <h4 class="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <div class="bg-slate-50 dark:bg-slate-900 rounded-xl p-3 border border-slate-100 dark:border-slate-800">
+                    <h4 class="font-bold text-slate-800 dark:text-white mb-3 flex items-center gap-2 text-sm">
                         <i class="ph ph-list-numbers text-primary-600"></i> Order Items
                     </h4>
-                    <div class="space-y-3">
+                    <div class="space-y-2">
                         <div class="flex justify-between items-center text-sm">
                             <span class="text-slate-600 dark:text-slate-400">Standard Scaffolding Frame x 2</span>
                             <span class="font-bold text-slate-800 dark:text-white">$80.00</span>
@@ -451,40 +453,40 @@
                             <span class="font-bold text-slate-800 dark:text-white">$40.00</span>
                         </div>
                         <div
-                            class="border-t border-slate-200 dark:border-slate-800 pt-3 flex justify-between items-center">
+                            class="border-t border-slate-200 dark:border-slate-800 pt-2 flex justify-between items-center mt-2">
                             <span
-                                class="font-bold text-slate-800 dark:text-white lowercase first-letter:uppercase">Total
+                                class="font-bold text-slate-800 dark:text-white lowercase first-letter:uppercase text-sm">Total
                                 Amount</span>
-                            <span class="text-lg font-bold text-primary-600">$120.00</span>
+                            <span class="text-base font-bold text-primary-600">$120.00</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Shipping Address
                         </p>
-                        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                             123 Business Ave, Suite 400<br>
                             Los Angeles, CA 90012
                         </p>
                     </div>
                     <div>
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Payment info</p>
-                        <p class="text-sm text-slate-700 dark:text-slate-300">
+                        <p class="text-xs text-slate-700 dark:text-slate-300">
                             Visa ending in •••• 4242<br>
                             Transaction ID: TXN_99182
                         </p>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3 pt-4">
+                <div class="flex items-center gap-3 pt-3">
                     <button @click="viewOrderModal = false" type="button"
-                        class="flex-1 px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        class="flex-1 px-6 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-xs">
                         Close Details
                     </button>
                     <button @click="viewOrderModal = false" type="button"
-                        class="flex-1 px-6 py-3 rounded-xl bg-primary-600 text-white font-bold hover:bg-primary-700 transition-all shadow-lg shadow-primary-500/30">
+                        class="flex-1 px-6 py-2.5 rounded-xl bg-primary-600 text-white font-bold hover:bg-primary-700 transition-all shadow-lg shadow-primary-500/30 text-xs">
                         Print Invoice
                     </button>
                 </div>
@@ -571,7 +573,7 @@
             x-transition:enter-start="opacity-0 scale-95 translate-y-4"
             x-transition:enter-end="opacity-100 scale-100 translate-y-0">
 
-            <div class="p-8 text-center">
+            <div class="p-6 text-center">
                 <div
                     class="w-20 h-20 bg-rose-100 dark:bg-rose-900/30 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i class="ph ph-warning-circle text-4xl font-bold"></i>
