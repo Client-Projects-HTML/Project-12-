@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "project-12/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "project-12/pages/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "project-12/assets/**",
+      "use": "@vercel/static"
+    },
+     {
+      "src": "project-12/dashboard/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+     {
+      "src": "/",
+      "dest": "/project-12/index.html"
+    },
+    {
+      "src": "/pages/(.*)",
+      "dest": "/project-12/pages/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/project-12/assets/$1"
+    },
+    {
+      "src": "/dashboard/(.*)",
+      "dest": "/project-12/dashboard/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/project-12/$1"
+    }
+  ]
+}
