@@ -4,21 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - SiteScaffold</title>
+    <title>Pricing - SiteScaffold</title>
 
     
     <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
-<!-- Fonts -->
+<!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Tailwind Config & CDN -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind.config.js"></script>
 
@@ -32,7 +30,7 @@
 <body class="font-body text-slate-600 bg-slate-50 dark:bg-darkbg dark:text-slate-300 transition-colors duration-300"
     x-data="{ mobileMenuOpen: false, loginModalOpen: false }">
 
-    <!-- Header Reuse (Copied structure for static template) -->
+    <!-- Header Reuse -->
     <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent py-4">
         <div class="container mx-auto px-4 flex items-center justify-between">
 
@@ -54,11 +52,11 @@
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">SaaS</a>
 
                 <a href="about.html"
-                    class="font-medium text-primary-600 dark:text-primary-400 transition-colors">About</a>
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
                 <a href="services.html"
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Services</a>
                 <a href="pricing.html"
-                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pricing</a>
+                    class="font-medium text-primary-600 dark:text-primary-400 transition-colors">Pricing</a>
                 <a href="blog.html"
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
                 <a href="contact.html"
@@ -132,7 +130,7 @@
 
     </header>
 
-    <!-- About Hero -->
+    <!-- Pricing Hero -->
     <section class="relative pt-32 pb-12 lg:pt-40 lg:pb-14 overflow-hidden">
         <div class="absolute inset-0 -z-10">
             <div
@@ -144,241 +142,275 @@
         <div class="container mx-auto px-4 text-center">
             <span
                 class="inline-block px-4 py-1.5 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-5">
-                ABOUT SITESCOFFOLD
+                FLEXIBLE PRICING
             </span>
-            <h1 class="text-4xl lg:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-5">We Build
-                Teams, Systems, and Results</h1>
+            <h1 class="text-4xl lg:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-5">Choose the
+                Plan That Fits Your Growth Stage</h1>
             <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 leading-relaxed">
-                Learn more about our mission, values, and the people who help organizations transform ideas into
-                measurable outcomes.
+                Simple monthly pricing for startups, scaling teams, and enterprise operations. No hidden costs, just
+                clear value.
             </p>
             <div class="mt-8 text-sm text-slate-500 dark:text-slate-400">
                 <a href="home-1.html" class="hover:text-primary-600 transition-colors">Home</a>
                 <span class="mx-2">/</span>
-                <span class="text-primary-600 dark:text-primary-400 font-semibold">About</span>
+                <span class="text-primary-600 dark:text-primary-400 font-semibold">Pricing</span>
             </div>
         </div>
     </section>
 
-    <!-- Mission & Vision -->
+        <!-- Pricing Plans -->
     <section class="pt-12 pb-20">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Team" class="rounded-2xl shadow-xl w-full">
-                </div>
-                <div class="w-full md:w-1/2">
-                    <h2 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mb-6">Building the Future
-                        Together</h2>
-                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                        Our mission is to empower businesses with the tools and strategies they need to succeed in the
-                        digital age. We believe in innovation, integrity, and the power of collaboration.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 mt-8">
-                        <div>
-                            <h3 class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">10+</h3>
-                            <p class="text-slate-600 dark:text-slate-400 font-medium">Years Experience</p>
-                        </div>
-                        <div>
-                            <h3 class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">500+</h3>
-                            <p class="text-slate-600 dark:text-slate-400 font-medium">Projects Completed</p>
-                        </div>
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-4">
+                    MONTHLY PLANS
+                </span>
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white mb-4">Transparent Pricing with Everything You Need</h2>
+                <p class="text-slate-600 dark:text-slate-400">All plans include onboarding support, secure infrastructure, and performance reporting. Upgrade anytime as your business grows.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+                    <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Startup team planning roadmap" class="w-full h-44 object-cover" loading="lazy">
+                    <div class="p-8 flex flex-col h-full">
+                        <p class="text-sm font-semibold uppercase tracking-widest text-primary-600 mb-2">Starter</p>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mb-1">$29<span class="text-base font-medium text-slate-500">/mo</span></h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6">For early-stage teams launching their first digital workflows.</p>
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Up to 5 team members</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Core analytics dashboard</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Email support</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Weekly performance digest</li>
+                        </ul>
+                        <a href="signup.html?plan=starter" class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded-xl border border-primary-200 dark:border-primary-800 text-primary-600 dark:text-primary-300 font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-colors">Get Starter</a>
                     </div>
                 </div>
+
+                <div class="bg-white dark:bg-darkcard rounded-2xl border-2 border-primary-500 shadow-xl shadow-primary-500/20 overflow-hidden flex flex-col h-full relative">
+                    <div class="absolute top-4 right-4 text-[10px] font-bold tracking-widest px-3 py-1 rounded-full bg-primary-600 text-white">POPULAR</div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Business analytics and growth metrics" class="w-full h-44 object-cover" loading="lazy">
+                    <div class="p-8 flex flex-col h-full">
+                        <p class="text-sm font-semibold uppercase tracking-widest text-primary-600 mb-2">Growth</p>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mb-1">$79<span class="text-base font-medium text-slate-500">/mo</span></h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6">For scaling companies that need automation and deeper insights.</p>
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Up to 20 team members</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Advanced analytics + exports</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Priority support</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Workflow automation tools</li>
+                        </ul>
+                        <a href="signup.html?plan=growth" class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-lg shadow-primary-500/30 transition-colors">Start Growth</a>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full md:col-span-2 xl:col-span-1">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Enterprise cloud infrastructure" class="w-full h-44 object-cover" loading="lazy">
+                    <div class="p-8 flex flex-col h-full">
+                        <p class="text-sm font-semibold uppercase tracking-widest text-primary-600 mb-2">Enterprise</p>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mb-1">Custom</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6">For large organizations with security, compliance, and SLA requirements.</p>
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Unlimited seats</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> Dedicated success manager</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> SSO + compliance controls</li>
+                            <li class="flex items-center gap-2"><i class="ph ph-check-circle text-green-500"></i> 24/7 premium support</li>
+                        </ul>
+                        <a href="contact.html" class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded-xl border border-primary-200 dark:border-primary-800 text-primary-600 dark:text-primary-300 font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-colors">Talk to Sales</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 rounded-2xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                <div>
+                    <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-1">Need yearly billing or a custom deployment?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Get tailored pricing, migration help, and onboarding aligned to your stack.</p>
+                </div>
+                <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-semibold hover:opacity-90 transition-opacity whitespace-nowrap">Request Proposal</a>
             </div>
         </div>
     </section>
 
-    <!-- Core Values -->
-    <section class="py-20 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-100 dark:border-slate-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-primary-600 font-semibold tracking-wider text-sm">CULTURE</span>
-                <h2 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-4">Our Core Values
-                </h2>
-                <p class="text-slate-600 dark:text-slate-400">The principles that guide every decision we make and every
-                    interaction we have.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div
-                    class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 dark:border-slate-800">
-                    <div
-                        class="w-12 h-12 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        <i class="ph ph-shield-check"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Integrity First</h3>
-                    <p class="text-slate-600 dark:text-slate-400">We believe in doing the right thing, always. Honesty
-                        and transparency are the foundations of our relationships.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 dark:border-slate-800">
-                    <div
-                        class="w-12 h-12 bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        <i class="ph ph-lightbulb"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Innovation</h3>
-                    <p class="text-slate-600 dark:text-slate-400">We constantly challenge the status quo, seeking new
-                        and better ways to solve complex problems.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-darkcard p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 dark:border-slate-800">
-                    <div
-                        class="w-12 h-12 bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        <i class="ph ph-users"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Client Success</h3>
-                    <p class="text-slate-600 dark:text-slate-400">Your success is our success. We are dedicated to
-                        delivering results that exceed expectations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Journey -->
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row gap-16 items-center">
-                <div class="lg:w-1/2">
-                    <span class="text-primary-600 font-semibold tracking-wider text-sm">HISTORY</span>
-                    <h2 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-6">A Decade of
-                        Excellence</h2>
-                    <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
-                        <p>
-                            Founded in 2014, SiteScaffold began as a small design boutique with a big vision: to create
-                            digital experiences that truly matter. What started in a shared workspace has grown into a
-                            global agency.
-                        </p>
-                        <p>
-                            Over the years, we've navigated the shifting landscapes of technology and design, always
-                            staying ahead of the curve. Our journey has been defined by the partnerships we've built and
-                            the challenges we've overcome.
-                        </p>
-                        <p>
-                            Today, we are proud to work with industry leaders and innovative startups alike, bringing
-                            the same level of passion and expertise to every project, regardless of scale.
-                        </p>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Office Life" class="rounded-2xl shadow-lg w-full h-full object-cover mt-8">
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Team Collaboration" class="rounded-2xl shadow-lg w-full h-full object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
+    <!-- FAQ Section -->
     <section class="py-20 bg-white dark:bg-darkcard">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-heading font-bold text-slate-900 dark:text-white mb-4">Meet Our Experts</h2>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">The talented people behind our success.
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-primary-600 font-semibold tracking-wider text-sm">SUPPORT</span>
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-4">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400">
+                    Find answers to common questions about our services, process, and pricing.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Member 1 -->
-                <div class="group text-center">
-                    <div class="relative overflow-hidden rounded-2xl mb-4 mx-auto w-full aspect-square max-w-[280px]">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="CEO"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500">
+            <div class="max-w-3xl mx-auto space-y-4" x-data="{ active: 1 }">
+                <!-- FAQ 1 -->
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900/50 overflow-hidden transition-all duration-300"
+                    :class="active === 1 ? 'border-primary-500 ring-1 ring-primary-500' : ''">
+                    <button @click="active = active === 1 ? null : 1"
+                        class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="text-lg font-bold text-slate-900 dark:text-white">How do we get started?</span>
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 transition-transform duration-300"
+                            :class="active === 1 ? 'rotate-180 bg-primary-100 text-primary-600 dark:bg-primary-900/30' : ''">
+                            <i class="ph ph-caret-down text-lg"></i>
+                        </div>
+                    </button>
+                    <div x-show="active === 1" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Getting started is simple. Contact us via our form or schedule a free consultation call. We'll
+                        discuss your needs, goals, and how our services can align with your vision.
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Alex Morgan</h3>
-                    <p class="text-primary-600 dark:text-primary-400">CEO & Founder</p>
                 </div>
-                <!-- Member 2 -->
-                <div class="group text-center">
-                    <div class="relative overflow-hidden rounded-2xl mb-4 mx-auto w-full aspect-square max-w-[280px]">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="CTO"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500">
+
+                <!-- FAQ 2 -->
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900/50 overflow-hidden transition-all duration-300"
+                    :class="active === 2 ? 'border-primary-500 ring-1 ring-primary-500' : ''">
+                    <button @click="active = active === 2 ? null : 2"
+                        class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="text-lg font-bold text-slate-900 dark:text-white">What industries do you
+                            serve?</span>
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 transition-transform duration-300"
+                            :class="active === 2 ? 'rotate-180 bg-primary-100 text-primary-600 dark:bg-primary-900/30' : ''">
+                            <i class="ph ph-caret-down text-lg"></i>
+                        </div>
+                    </button>
+                    <div x-show="active === 2" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                        We work with a diverse range of industries including Technology, Finance, Healthcare, Retail,
+                        and more. Our adaptable strategies allow us to cater to specific industry requirements
+                        effectively.
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Sarah Jenkins</h3>
-                    <p class="text-primary-600 dark:text-primary-400">CTO</p>
                 </div>
-                <!-- Member 3 -->
-                <div class="group text-center">
-                    <div class="relative overflow-hidden rounded-2xl mb-4 mx-auto w-full aspect-square max-w-[280px]">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Designer"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500">
+
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900/50 overflow-hidden transition-all duration-300"
+                    :class="active === 3 ? 'border-primary-500 ring-1 ring-primary-500' : ''">
+                    <button @click="active = active === 3 ? null : 3"
+                        class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="text-lg font-bold text-slate-900 dark:text-white">What is your pricing
+                            model?</span>
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 transition-transform duration-300"
+                            :class="active === 3 ? 'rotate-180 bg-primary-100 text-primary-600 dark:bg-primary-900/30' : ''">
+                            <i class="ph ph-caret-down text-lg"></i>
+                        </div>
+                    </button>
+                    <div x-show="active === 3" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Our pricing is project-based or retainer-based depending on the services required. We offer
+                        transparent pricing with no hidden fees, and we can tailor a package to fit your budget.
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Michael Chen</h3>
-                    <p class="text-primary-600 dark:text-primary-400">Lead Designer</p>
                 </div>
-                <!-- Member 4 -->
-                <div class="group text-center">
-                    <div class="relative overflow-hidden rounded-2xl mb-4 mx-auto w-full aspect-square max-w-[280px]">
-                        <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Marketing"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500">
+
+                <!-- FAQ 4 -->
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900/50 overflow-hidden transition-all duration-300"
+                    :class="active === 4 ? 'border-primary-500 ring-1 ring-primary-500' : ''">
+                    <button @click="active = active === 4 ? null : 4"
+                        class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="text-lg font-bold text-slate-900 dark:text-white">Do you offer ongoing
+                            support?</span>
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 transition-transform duration-300"
+                            :class="active === 4 ? 'rotate-180 bg-primary-100 text-primary-600 dark:bg-primary-900/30' : ''">
+                            <i class="ph ph-caret-down text-lg"></i>
+                        </div>
+                    </button>
+                    <div x-show="active === 4" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Yes, we believe in long-term partnerships. We offer various support and maintenance packages to
+                        ensure your solutions continue to perform optimally after launch.
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Emily Davis</h3>
-                    <p class="text-primary-600 dark:text-primary-400">Marketing Head</p>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900/50 overflow-hidden transition-all duration-300"
+                    :class="active === 5 ? 'border-primary-500 ring-1 ring-primary-500' : ''">
+                    <button @click="active = active === 5 ? null : 5"
+                        class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="text-lg font-bold text-slate-900 dark:text-white">Can you work with existing
+                            teams?</span>
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 transition-transform duration-300"
+                            :class="active === 5 ? 'rotate-180 bg-primary-100 text-primary-600 dark:bg-primary-900/30' : ''">
+                            <i class="ph ph-caret-down text-lg"></i>
+                        </div>
+                    </button>
+                    <div x-show="active === 5" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Absolutely. We often collaborate with internal teams to augment capabilities and transfer
+                        knowledge. We act as an extension of your own team.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Culture Gallery -->
+    <!-- Service Outcomes -->
     <section class="py-20 bg-slate-50 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800">
         <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto text-center mb-14">
-                <span class="text-primary-600 font-semibold tracking-wider text-sm">LIFE AT SITE SCAFFOLD</span>
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-primary-600 font-semibold tracking-wider text-sm">DELIVERY IMPACT</span>
                 <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-4">
-                    Inside Our Collaborative Culture
+                    What Our Engagements Deliver
                 </h2>
                 <p class="text-slate-600 dark:text-slate-400">
-                    Our teams blend strategy, creativity, and technical excellence in focused workshops and delivery
-                    sprints.
+                    Every service line is designed to generate practical, measurable outcomes for your team and your
+                    customers.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-5 gap-6">
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                 <article
-                    class="lg:col-span-3 rounded-2xl overflow-hidden bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                        alt="Team workshop session"
-                        class="w-full h-72 lg:h-80 object-cover" loading="lazy">
+                    class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                        alt="Business consulting workshop" class="w-full h-52 object-cover" loading="lazy">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Weekly Strategy Workshops
-                        </h3>
-                        <p class="text-slate-600 dark:text-slate-400">Cross-functional planning keeps our projects
-                            aligned and helps us ship with confidence.</p>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Consulting Playbooks</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Clear execution roadmaps, KPI
+                            baselines, and decision frameworks that accelerate strategic alignment.</p>
+                        <a href="service-details.html?id=consulting"
+                            class="inline-flex items-center gap-2 text-primary-600 font-semibold hover:gap-3 transition-all">
+                            View Consulting Details <i class="ph ph-arrow-right"></i>
+                        </a>
                     </div>
                 </article>
 
-                <div class="lg:col-span-2 grid sm:grid-cols-2 lg:grid-cols-1 gap-6">
-                    <article
-                        class="rounded-2xl overflow-hidden bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800">
-                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
-                            alt="Product design discussion"
-                            class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-5">
-                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Design Critiques</h4>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm">Structured feedback loops improve
-                                usability and clarity.</p>
-                        </div>
-                    </article>
-                    <article
-                        class="rounded-2xl overflow-hidden bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
-                            alt="Engineering team planning"
-                            class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-5">
-                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Delivery Sprints</h4>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm">Short sprint cycles keep progress
-                                transparent and measurable.</p>
-                        </div>
-                    </article>
-                </div>
+                <article
+                    class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                        alt="Software development workstation" class="w-full h-52 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Production-Ready Builds</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Modern architectures, secure coding
+                            practices, and maintainable systems prepared for long-term scale.</p>
+                        <a href="service-details.html?id=software"
+                            class="inline-flex items-center gap-2 text-primary-600 font-semibold hover:gap-3 transition-all">
+                            View Software Details <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article
+                    class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                        alt="Digital marketing performance board" class="w-full h-52 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Campaign Growth Systems</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Audience segmentation, creative
+                            testing, and attribution tracking that continuously improve ROI.</p>
+                        <a href="service-details.html?id=marketing"
+                            class="inline-flex items-center gap-2 text-primary-600 font-semibold hover:gap-3 transition-all">
+                            View Marketing Details <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -632,9 +664,10 @@
         <nav class="flex flex-col gap-1">
             <a href="home-1.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Home</a>
             <a href="home-2.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">SaaS Home</a>
-            <a href="about.html" class="text-base font-medium text-primary-600 dark:text-primary-400 py-1">About Us</a>
-            <a href="services.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Services</a>
-            <a href="pricing.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Pricing</a>
+            <a href="about.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">About Us</a>
+            <a href="services.html"
+                class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Services</a>
+            <a href="pricing.html" class="text-base font-medium text-primary-600 dark:text-primary-400 py-1">Pricing</a>
             <a href="blog.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Blog</a>
             <a href="contact.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Contact</a>
                         <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2" x-data="{ portalOpen: false }">
@@ -668,5 +701,6 @@
 </body>
 
 </html>
+
 
 

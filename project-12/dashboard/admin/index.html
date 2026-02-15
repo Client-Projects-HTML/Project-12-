@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - SiteScaffold</title>
 
-    <!-- Fonts -->
+    
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+<!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -31,7 +33,7 @@
     <link rel="stylesheet" href="../../assets/css/rtl.css"> <!-- Adjusted Path -->
 </head>
 
-<body class="font-body text-slate-600 bg-slate-50 dark:bg-darkbg dark:text-slate-300 transition-colors duration-300"
+<body class="font-body text-slate-600 bg-slate-50 dark:bg-darkbg dark:text-slate-300 transition-colors duration-300 overflow-x-hidden"
     x-data="{ 
         sidebarOpen: false,
         viewOrderModal: false,
@@ -113,12 +115,12 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="lg:pl-64 flex flex-col min-h-screen">
+    <main class="lg:pl-64 flex flex-col min-h-screen overflow-x-hidden">
         <!-- Topbar -->
         <header
-            class="h-16 bg-white dark:bg-darkcard border-b border-slate-100 dark:border-slate-800 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-30">
+            class="h-16 bg-white dark:bg-darkcard border-b border-slate-100 dark:border-slate-800 flex items-center justify-between px-3 sm:px-4 lg:px-8 fixed top-0 right-0 left-0 lg:left-64 z-30">
             <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = true" class="lg:hidden text-2xl text-slate-500 hover:text-slate-700">
+                <button @click="sidebarOpen = true" class="lg:hidden text-xl sm:text-2xl text-slate-500 hover:text-slate-700">
                     <i class="ph ph-list"></i>
                 </button>
             </div>
@@ -126,14 +128,14 @@
             <div class="flex items-center gap-4">
                 <!-- Theme Toggle -->
                 <button x-data @click="$store.theme.toggle()"
-                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-500 dark:text-slate-400">
+                    class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-500 dark:text-slate-400">
                     <i class="ph ph-sun text-xl" x-show="$store.theme.mode === 'light'"></i>
                     <i class="ph ph-moon text-xl" x-show="$store.theme.mode === 'dark'" x-cloak></i>
                 </button>
 
                 <!-- RTL Toggle -->
                 <button x-data @click="$store.theme.toggleRTL()"
-                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-500 dark:text-slate-400 font-bold text-xs"
+                    class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-500 dark:text-slate-400 font-bold text-xs"
                     :title="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">
                     <span x-show="$store.theme.dir === 'ltr'">RTL</span>
                     <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
@@ -142,14 +144,14 @@
                 <!-- Notifications -->
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" @click.outside="open = false"
-                        class="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-500 dark:text-slate-400">
+                        class="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-500 dark:text-slate-400">
                         <i class="ph ph-bell text-xl"></i>
                         <span
                             class="absolute top-2 right-2 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-white dark:border-darkcard"></span>
                     </button>
 
                     <div x-show="open" x-transition x-cloak
-                        class="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-700 rounded-2xl shadow-xl overflow-hidden">
+                        class="fixed left-2 right-2 top-20 z-[70] max-w-[calc(100vw-1rem)] bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-700 rounded-2xl shadow-xl overflow-hidden sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-80 sm:max-w-none">
                         <div
                             class="px-4 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
                             <span class="font-bold text-slate-800 dark:text-white">Notifications</span>
@@ -215,36 +217,20 @@
                     </div>
                 </div>
 
-                <!-- Profile Dropdown -->
-                <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" @click.outside="open = false"
-                        class="flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 p-1.5 rounded-lg transition-colors">
-                        <img src="https://i.pravatar.cc/150?u=admin" alt="Admin"
-                            class="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700">
-                        <div class="hidden md:block text-left">
-                            <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Admin User</p>
-                            <p class="text-xs text-slate-500">Super Admin</p>
-                        </div>
-                        <i class="ph ph-caret-down text-xs text-slate-400 hidden md:block"></i>
-                    </button>
-
-                    <div x-show="open" x-transition x-cloak
-                        class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-700 rounded-xl shadow-xl py-1">
-                        <a href="profile.html"
-                            class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">My
-                            Profile</a>
-                        <a href="settings.html"
-                            class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Settings</a>
-                        <div class="border-t border-slate-100 dark:border-slate-800 my-1"></div>
-                        <a href="../../pages/login.html"
-                            class="block px-4 py-2 text-sm text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20">Logout</a>
+                                <!-- Admin User (Static) -->
+                <div class="flex items-center gap-3 p-1.5 rounded-lg">
+                    <img src="https://i.pravatar.cc/150?u=admin" alt="Admin"
+                        class="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700">
+                    <div class="hidden md:block text-left">
+                        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Admin User</p>
+                        <p class="text-xs text-slate-500">Super Admin</p>
                     </div>
                 </div>
             </div>
         </header>
 
         <!-- Page Content -->
-        <div class="p-4 lg:p-8 flex-1 overflow-y-auto">
+        <div class="pt-20 p-4 lg:p-8 flex-1 overflow-y-auto overflow-x-hidden">
             <!-- Page Heading -->
             <div class="mb-8">
                 <h1 class="font-heading font-bold text-3xl text-slate-900 dark:text-white">Dashboard Overview</h1>
@@ -643,3 +629,6 @@
 </body>
 
 </html>
+
+
+

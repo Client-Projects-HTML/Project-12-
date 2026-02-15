@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home SaaS - SiteScaffold</title>
 
-    <!-- Fonts & Icons -->
+    
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+<!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -39,7 +41,7 @@
                     class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl shadow-lg shadow-primary-500/30">
                     <i class="ph ph-hexagon text-2xl"></i>
                 </div>
-                <span class="font-heading font-bold text-2xl text-slate-900 dark:text-white tracking-tight">Site<span
+                <span class="font-heading font-bold text-xl sm:text-2xl text-slate-900 dark:text-white tracking-tight">Site<span
                         class="text-primary-600">Scaffold</span></span>
             </a>
 
@@ -54,6 +56,8 @@
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
                 <a href="services.html"
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Services</a>
+                <a href="pricing.html"
+                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pricing</a>
                 <a href="blog.html"
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
                 <a href="contact.html"
@@ -77,23 +81,58 @@
                     <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
                 </button>
 
-                <!-- CTA Button -->
-                <a href="login.html"
-                    class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-2.5 rounded-full font-semibold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
-                    Login <i class="ph ph-user font-bold"></i>
-                </a>
+                                <!-- CTA Button -->
+                <div class="relative" x-data="{ loginDropdownOpen: false }" @click.outside="loginDropdownOpen = false">
+                    <div class="flex items-center bg-primary-600 rounded-full shadow-lg shadow-primary-500/30 overflow-hidden">
+                        <a href="login.html"
+                            class="text-white px-6 py-2.5 font-semibold flex items-center gap-2 transition-colors hover:bg-primary-700/20">
+                            Login
+                        </a>
+                        <button type="button" @click="loginDropdownOpen = !loginDropdownOpen"
+                            class="text-white px-3 py-2.5 font-semibold border-l border-white/25 transition-colors hover:bg-primary-700/20">
+                            <i class="ph ph-caret-down text-sm transition-transform duration-200" :class="loginDropdownOpen ? 'rotate-180' : ''"></i>
+                        </button>
+                    </div>
+                    <div x-show="loginDropdownOpen" x-transition x-cloak
+                        class="absolute right-0 mt-2 w-56 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden z-50">
+                        <a href="../dashboard/admin/index.html"
+                            class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <i class="ph ph-shield-check"></i> Admin Dashboard
+                        </a>
+                        <a href="../dashboard/client/index.html"
+                            class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-t border-slate-100 dark:border-slate-800">
+                            <i class="ph ph-user-circle"></i> Client Dashboard
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-2xl text-slate-800 dark:text-white">
-                <i class="ph ph-list"></i>
-            </button>
+                        <!-- Mobile Actions + Menu -->
+            <div class="flex lg:hidden items-center gap-1 sm:gap-2 shrink-0 ml-1 sm:ml-2">
+                <button x-data @click="$store.theme.toggle()"
+                    class="w-9 h-9 sm:w-10 sm:h-10 min-h-0 min-w-0 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400">
+                    <i class="ph ph-sun text-lg" x-show="$store.theme.mode === 'light'"></i>
+                    <i class="ph ph-moon text-lg" x-show="$store.theme.mode === 'dark'" x-cloak></i>
+                </button>
+
+                <button x-data @click="$store.theme.toggleRTL()"
+                    class="w-9 h-9 sm:w-10 sm:h-10 min-h-0 min-w-0 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400 font-bold text-[10px]"
+                    :title="$store.theme.dir === 'ltr' ? 'Switch to RTL' : 'Switch to LTR'">
+                    <span x-show="$store.theme.dir === 'ltr'">RTL</span>
+                    <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
+                </button>
+
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="w-9 h-9 sm:w-10 sm:h-10 min-h-0 min-w-0 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-200">
+                    <i class="ph ph-list text-xl"></i>
+                </button>
+            </div>
         </div>
 
     </header>
 
     <!-- Hero SaaS -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden text-center">
+    <section class="relative pt-32 pb-14 lg:pt-48 lg:pb-20 overflow-hidden text-center">
         <!-- Background -->
         <div class="absolute inset-0 -z-10">
             <div
@@ -140,16 +179,21 @@
     </section>
 
     <!-- Trusted By -->
-    <section class="py-10 border-y border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+    <section class="pt-6 pb-10 border-y border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
         <div class="container mx-auto px-4 text-center">
             <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-8">Trusted by industry leaders
             </p>
-            <div class="flex flex-wrap justify-center gap-8 lg:gap-16 opacity-50 grayscale">
-                <span class="text-2xl font-bold font-heading">Acme Corp</span>
-                <span class="text-2xl font-bold font-heading">Global Bank</span>
-                <span class="text-2xl font-bold font-heading">TechFlow</span>
-                <span class="text-2xl font-bold font-heading">Orbit</span>
-                <span class="text-2xl font-bold font-heading">Fusion</span>
+            <div class="flex flex-wrap justify-center gap-8 lg:gap-16">
+                <span
+                    class="text-2xl font-bold font-heading text-slate-400 dark:text-slate-500 transition-colors duration-200 hover:text-[#2563eb]">Acme Corp</span>
+                <span
+                    class="text-2xl font-bold font-heading text-slate-400 dark:text-slate-500 transition-colors duration-200 hover:text-[#16a34a]">Global Bank</span>
+                <span
+                    class="text-2xl font-bold font-heading text-slate-400 dark:text-slate-500 transition-colors duration-200 hover:text-[#7c3aed]">TechFlow</span>
+                <span
+                    class="text-2xl font-bold font-heading text-slate-400 dark:text-slate-500 transition-colors duration-200 hover:text-[#ea580c]">Orbit</span>
+                <span
+                    class="text-2xl font-bold font-heading text-slate-400 dark:text-slate-500 transition-colors duration-200 hover:text-[#e11d48]">Fusion</span>
             </div>
         </div>
     </section>
@@ -201,10 +245,112 @@
         </div>
     </section>
 
+    <!-- How It Works -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-900/40 border-y border-slate-100 dark:border-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary-600 font-semibold tracking-wider text-sm">HOW IT WORKS</span>
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-4">
+                    Launch Faster in Three Clear Steps
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400">
+                    From onboarding to daily operations, we keep setup simple so your team can focus on outcomes instead
+                    of tooling complexity.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <article
+                    class="bg-white dark:bg-darkcard rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 flex items-center justify-center text-2xl mb-5">
+                        <i class="ph ph-plugs-connected"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Connect Your Stack</h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Integrate CRM, analytics, communication, and billing tools with ready-made connectors.
+                    </p>
+                </article>
+
+                <article
+                    class="bg-white dark:bg-darkcard rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center text-2xl mb-5">
+                        <i class="ph ph-sliders-horizontal"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Configure Workflows</h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Build reusable automations for approvals, task routing, onboarding, and customer operations.
+                    </p>
+                </article>
+
+                <article
+                    class="bg-white dark:bg-darkcard rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center text-2xl mb-5">
+                        <i class="ph ph-rocket-launch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Scale With Insights</h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Monitor real-time KPIs and optimize conversion, cycle time, and team capacity in one place.
+                    </p>
+                </article>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl">
+                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80"
+                    alt="Team collaborating around product dashboard" class="w-full h-80 lg:h-[420px] object-cover"
+                    loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Impact -->
+    <section class="py-24 bg-white dark:bg-darkcard">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
+                        alt="Operations team in strategy meeting" class="rounded-3xl shadow-2xl w-full object-cover"
+                        loading="lazy">
+                    <div
+                        class="absolute -bottom-6 left-6 right-6 bg-white/95 dark:bg-slate-900/90 backdrop-blur border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-lg">
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Average customer improvement</p>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white">39% faster project delivery</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-primary-600 font-semibold tracking-wider text-sm">CUSTOMER IMPACT</span>
+                    <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 dark:text-white mt-2 mb-6">
+                        Built for Teams That Need Results, Not Just Features
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+                        Service firms, product teams, and operations leaders use SiteScaffold to shorten delivery cycles,
+                        reduce communication gaps, and maintain consistent quality across distributed teams.
+                    </p>
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-800">
+                            <p class="text-2xl font-bold text-primary-600 mb-1">2.4x</p>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Productivity</p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-800">
+                            <p class="text-2xl font-bold text-green-600 mb-1">-52%</p>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Manual Work</p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-100 dark:border-slate-800">
+                            <p class="text-2xl font-bold text-accent mb-1">98%</p>
+                            <p class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">SLA Hit Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer Reuse -->
     <footer class="bg-slate-900 text-white pt-20 pb-10">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            <div class="grid footer-links-grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <!-- Branding -->
                 <div>
                     <a href="home-1.html" class="flex items-center gap-2 mb-6">
@@ -243,6 +389,7 @@
                         </li>
                         <li><a href="services.html"
                                 class="text-slate-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="pricing.html" class="text-slate-400 hover:text-white transition-colors">Pricing</a></li>
                         <li><a href="coming-soon.html"
                                 class="text-slate-400 hover:text-white transition-colors">Events</a></li>
                         <li><a href="404.html" class="text-slate-400 hover:text-white transition-colors">Careers</a>
@@ -451,32 +598,39 @@
                 Home</a>
             <a href="about.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">About Us</a>
             <a href="services.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Services</a>
+            <a href="pricing.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Pricing</a>
             <a href="blog.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Blog</a>
             <a href="contact.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Contact</a>
-            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2">
-                <a href="login.html"
-                    class="w-full flex items-center justify-center gap-2 bg-primary-600 text-white py-2.5 rounded-xl font-semibold shadow-lg shadow-primary-500/30 text-sm">
-                    <i class="ph ph-user"></i> Login
-                </a>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2" x-data="{ portalOpen: false }">
+                <div class="flex items-stretch bg-primary-600 rounded-xl shadow-lg shadow-primary-500/30 overflow-hidden">
+                    <a href="login.html"
+                        class="flex-1 flex items-center justify-center gap-2 text-white py-2.5 font-semibold text-sm transition-colors hover:bg-primary-700/20">
+                        Login
+                    </a>
+                    <button type="button" @click="portalOpen = !portalOpen"
+                        class="px-3 text-white border-l border-white/25 transition-colors hover:bg-primary-700/20">
+                        <i class="ph ph-caret-down transition-transform duration-200" :class="portalOpen ? 'rotate-180' : ''"></i>
+                    </button>
+                </div>
+                <div x-show="portalOpen" x-transition x-cloak
+                    class="mt-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+                    <a href="../dashboard/admin/index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <i class="ph ph-shield-check"></i> Admin Dashboard
+                    </a>
+                    <a href="../dashboard/client/index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border-t border-slate-200 dark:border-slate-800">
+                        <i class="ph ph-user-circle"></i> Client Dashboard
+                    </a>
+                </div>
             </div>
         </nav>
 
-        <div class="mt-auto grid grid-cols-2 gap-3 pb-6">
-            <button x-data @click=".theme.toggle()"
-                class="flex flex-col items-center justify-center gap-1 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl text-slate-700 dark:text-slate-300 font-medium text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                <i class="ph ph-sun text-xl" x-show=".theme.mode === 'light'"></i>
-                <i class="ph ph-moon text-xl" x-show=".theme.mode === 'dark'" x-cloak></i>
-                <span>Theme</span>
-            </button>
-            <button x-data @click=".theme.toggleRTL()"
-                class="flex flex-col items-center justify-center gap-1 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl text-slate-700 dark:text-slate-300 font-medium text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                <i class="ph ph-arrows-left-right text-xl"></i>
-                <span x-text=".theme.dir === 'ltr' ? 'RTL' : 'LTR'">RTL</span>
-            </button>
         </div>
-    </div>
     <!-- Main Script -->
     <script src="../assets/js/main.js"></script>
 </body>
 
 </html>
+
+
