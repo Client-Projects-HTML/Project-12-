@@ -4,16 +4,16 @@ tailwind.config = {
     extend: {
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7', // Brand Color
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#FFF4EC',
+          100: '#FFE4CC',
+          200: '#FDCFA3',
+          300: '#FBB87A',
+          400: '#F9A86F',
+          500: '#F79D65', // Brand Coral
+          600: '#F79D65', // Brand Coral (main)
+          700: '#E6864E', // Hover / Darker Coral
+          800: '#C96D35',
+          900: '#A3522A',
         },
         secondary: {
           50: '#f8fafc',
@@ -28,9 +28,9 @@ tailwind.config = {
           900: '#0f172a',
         },
         accent: {
-          light: '#f43f5e', // Rose 500
-          DEFAULT: '#e11d48', // Rose 600
-          dark: '#be123c', // Rose 700
+          light: '#FFF4EC', // Soft coral bg
+          DEFAULT: '#FDBA8C', // Light coral accent
+          dark: '#E6864E',  // Darker coral
         },
         // Dark mode specific background layer
         darkbg: '#0f172a', 

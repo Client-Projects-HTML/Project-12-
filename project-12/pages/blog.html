@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - SiteScaffold</title>
 
-    
+
     <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
-<!-- Fonts & Icons -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -44,10 +44,23 @@
 
             <!-- Desktop Menu -->
             <nav class="hidden lg:flex items-center gap-8">
-                <a href="home-1.html"
-                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
-                <a href="home-2.html"
-                    class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">SaaS</a>
+                <!-- Home Dropdown -->
+                <div x-data="{ homeOpen: false }" class="relative">
+                    <button @click="homeOpen = !homeOpen" @click.outside="homeOpen = false"
+                        class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-1">
+                        Home <i class="ph ph-caret-down text-xs transition-transform duration-200"
+                            :class="homeOpen ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="homeOpen" x-transition x-cloak
+                        class="absolute top-full left-0 mt-2 w-36 bg-white dark:bg-darkcard border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg py-1 z-50">
+                        <a href="home-1.html"
+                            class="block px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 hover:text-primary-600 transition-colors">Home
+                            1</a>
+                        <a href="home-2.html"
+                            class="block px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 hover:text-primary-600 transition-colors">Home
+                            2</a>
+                    </div>
+                </div>
 
                 <a href="about.html"
                     class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
@@ -78,16 +91,18 @@
                     <span x-show="$store.theme.dir === 'rtl'" x-cloak>LTR</span>
                 </button>
 
-                                <!-- CTA Button -->
+                <!-- CTA Button -->
                 <div class="relative" x-data="{ loginDropdownOpen: false }" @click.outside="loginDropdownOpen = false">
-                    <div class="flex items-center bg-primary-600 rounded-full shadow-lg shadow-primary-500/30 overflow-hidden">
+                    <div
+                        class="flex items-center bg-primary-600 rounded-full shadow-lg shadow-primary-500/30 overflow-hidden">
                         <a href="login.html"
                             class="text-white px-6 py-2.5 font-semibold flex items-center gap-2 transition-colors hover:bg-primary-700/20">
                             Login
                         </a>
                         <button type="button" @click="loginDropdownOpen = !loginDropdownOpen"
                             class="text-white px-3 py-2.5 font-semibold border-l border-white/25 transition-colors hover:bg-primary-700/20">
-                            <i class="ph ph-caret-down text-sm transition-transform duration-200" :class="loginDropdownOpen ? 'rotate-180' : ''"></i>
+                            <i class="ph ph-caret-down text-sm transition-transform duration-200"
+                                :class="loginDropdownOpen ? 'rotate-180' : ''"></i>
                         </button>
                     </div>
                     <div x-show="loginDropdownOpen" x-transition x-cloak
@@ -249,12 +264,12 @@
                     <div class="grid md:grid-cols-2 gap-8 content-start">
                         <template x-for="post in paginatedPosts" :key="post.id">
                             <article
-                                class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-lg transition-shadow">
+                                class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-lg transition-shadow flex flex-col">
                                 <a :href="'blog-details.html?id=' + post.id" class="block aspect-video overflow-hidden">
                                     <img :src="post.image" :alt="post.title"
                                         class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
                                 </a>
-                                <div class="p-6">
+                                <div class="p-6 flex flex-col flex-1">
                                     <div class="flex items-center gap-4 text-sm text-slate-500 mb-4">
                                         <span class="px-3 py-1 rounded-full font-semibold" :class="{
                                                 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400': post.categoryColor === 'primary',
@@ -270,7 +285,7 @@
                                         <a :href="'blog-details.html?id=' + post.id"
                                             class="hover:text-primary-600 transition-colors" x-text="post.title"></a>
                                     </h2>
-                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed"
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed flex-1"
                                         x-text="post.excerpt"></p>
                                     <a :href="'blog-details.html?id=' + post.id"
                                         class="inline-flex items-center gap-2 text-primary-600 font-bold hover:gap-3 transition-all">
@@ -511,7 +526,8 @@
                         </li>
                         <li><a href="services.html"
                                 class="text-slate-400 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="pricing.html" class="text-slate-400 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="pricing.html" class="text-slate-400 hover:text-white transition-colors">Pricing</a>
+                        </li>
                         <li><a href="coming-soon.html"
                                 class="text-slate-400 hover:text-white transition-colors">Events</a></li>
                         <li><a href="404.html" class="text-slate-400 hover:text-white transition-colors">Careers</a>
@@ -716,22 +732,24 @@
         </div>
 
         <nav class="flex flex-col gap-1">
-            <a href="home-1.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Home</a>
-            <a href="home-2.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">SaaS Home</a>
+            <a href="home-1.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Home 1</a>
+            <a href="home-2.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Home 2</a>
             <a href="about.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">About Us</a>
             <a href="services.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Services</a>
             <a href="pricing.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Pricing</a>
             <a href="blog.html" class="text-base font-medium text-primary-600 dark:text-primary-400 py-1">Blog</a>
             <a href="contact.html" class="text-base font-medium text-slate-600 dark:text-slate-300 py-1">Contact</a>
-                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2" x-data="{ portalOpen: false }">
-                <div class="flex items-stretch bg-primary-600 rounded-xl shadow-lg shadow-primary-500/30 overflow-hidden">
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2" x-data="{ portalOpen: false }">
+                <div
+                    class="flex items-stretch bg-primary-600 rounded-xl shadow-lg shadow-primary-500/30 overflow-hidden">
                     <a href="login.html"
                         class="flex-1 flex items-center justify-center gap-2 text-white py-2.5 font-semibold text-sm transition-colors hover:bg-primary-700/20">
                         Login
                     </a>
                     <button type="button" @click="portalOpen = !portalOpen"
                         class="px-3 text-white border-l border-white/25 transition-colors hover:bg-primary-700/20">
-                        <i class="ph ph-caret-down transition-transform duration-200" :class="portalOpen ? 'rotate-180' : ''"></i>
+                        <i class="ph ph-caret-down transition-transform duration-200"
+                            :class="portalOpen ? 'rotate-180' : ''"></i>
                     </button>
                 </div>
                 <div x-show="portalOpen" x-transition x-cloak
@@ -748,11 +766,9 @@
             </div>
         </nav>
 
-        </div>
+    </div>
     <!-- Main Script -->
     <script src="../assets/js/main.js"></script>
 </body>
 
 </html>
-
-

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -35,7 +35,7 @@
         <div class="container mx-auto px-4 flex items-center justify-between">
 
             <!-- Logo -->
-            <a href="home-1.html" class="flex items-center gap-2">
+            <a href="home-1.html" class="flex items-center gap-2 flex-1">
                 <div
                     class="w-10 h-10 bg-primary-600 text-white flex items-center justify-center rounded-xl shadow-lg shadow-primary-500/30">
                     <i class="ph ph-hexagon text-2xl"></i>
@@ -64,7 +64,7 @@
             </nav>
 
             <!-- Actions -->
-            <div class="hidden lg:flex items-center gap-4">
+            <div class="hidden lg:flex items-center gap-4 flex-1 justify-end">
                 <!-- Theme Toggle -->
                 <button x-data @click="$store.theme.toggle()"
                     class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-400">
@@ -749,5 +749,6 @@
 </body>
 
 </html>
+
 
 

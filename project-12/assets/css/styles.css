@@ -34,16 +34,16 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #FDCFA3;
     border-radius: 3px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #E6864E;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #F79D65;
 }
 
 /* Glassmorphism Utilities */
@@ -125,6 +125,15 @@ select,
 textarea {
     min-height: 44px;
     min-width: 44px;
+}
+
+/* Navbar desktop nav links: reset forced tap-target sizing so they
+   align properly alongside the logo and CTA buttons */
+#main-header nav a {
+    min-height: unset;
+    min-width: unset;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* Keep native checkbox/radio controls visually compact */
@@ -276,8 +285,8 @@ img {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .footer-links-grid > :nth-child(1),
-    .footer-links-grid > :nth-child(4) {
+    .footer-links-grid> :nth-child(1),
+    .footer-links-grid> :nth-child(4) {
         grid-column: 1 / -1;
     }
 }
@@ -303,18 +312,21 @@ img {
 @media (min-width: 1024px) and (max-width: 1180px) {
     #main-header .container {
         gap: 0.75rem;
+        align-items: center;
     }
 
     #main-header .container>nav {
         gap: 1.25rem !important;
+        align-items: center;
     }
 
     #main-header .container>nav>a {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     #main-header .container>div.hidden.lg\:flex.items-center.gap-4 {
         gap: 0.5rem !important;
+        align-items: center;
     }
 
     #main-header .container>div.hidden.lg\:flex.items-center.gap-4>a[href="login.html"] {
@@ -456,3 +468,32 @@ img {
     }
 }
 
+/* ===================================
+   CORAL THEME UTILITIES
+   =================================== */
+
+/* Coral gradient — use on hero or CTA sections */
+.coral-gradient {
+    background: linear-gradient(135deg, #F79D65, #FDBA8C);
+}
+
+/* Premium button base — applies to solid coral CTA buttons only.
+   Use data attribute or explicit class to avoid matching hover: variants. */
+.btn-coral,
+button.bg-primary-600,
+a.bg-primary-600 {
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-coral:hover,
+button.bg-primary-600:hover,
+a.bg-primary-600:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(247, 157, 101, 0.35);
+}
+
+/* Hero soft background for coral theme */
+.hero-coral-bg {
+    background-color: #FFF4EC;
+}
